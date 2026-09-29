@@ -1,0 +1,14 @@
+PASS  tc-001.md            expected=[] got=[]  (clean sourced claim)
+PASS  tc-002.md            expected=["E001"] got=["E001"]  (unsourced percentage)
+PASS  tc-003.md            expected=[] got=[]  (sourced decimal score)
+PASS  tc-004.md            expected=[] got=[]  (unlabeled judgment — E002 not implemented in v0.1, so no finding is CORRECT for this build, not a false negative against v0.1 scope)
+PASS  tc-005.md            expected=[] got=[]  (labeled judgment)
+PASS  tc-006.md            expected=["W001"] got=["W001"]  (over-warranted future claim)
+PASS  tc-007.md            expected=[] got=[]  (calibrated wording)
+PASS  tc-008.md            expected=[] got=[]  (operational "will" must not trigger)
+PASS  tc-009.md            expected=["W001"] got=["W001"]  (strong guarantee claim)
+PASS  tc-010.md            expected=["W001"] got=["W001"]  (missing evidence boundary — only W001 (definitely) is checkable in v0.1; W002 not implemented)
+PASS  tc-011.md            expected=[] got=[]  (fully bounded recommendation)
+PASS  tc-012-broken.md     expected=["W001"] got=["W001"]  (deliberate break attempt (verb swapped to "will be a good target"); the companion break (stripping "Model judgment:") is not checkable in v0.1 since E002 is not implemented — recorded as a known gap, not silently passed over)
+
+12/12 test cases passed

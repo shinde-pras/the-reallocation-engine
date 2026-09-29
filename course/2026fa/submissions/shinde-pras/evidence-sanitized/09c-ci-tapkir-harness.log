@@ -1,0 +1,11 @@
+Gate-behavior harness — correct-multiplicative-gates
+  fixture: data/examples/gate-behavior-roles.json
+  checks: 22 PASS / 0 FAIL (of 22)
+  verdict: PASS
+  ✓ healthy-apply → Apply (0.4462)
+  ✓ ghost-posting-dead-liveness → Skip (0)
+  ✓ impossible-timeline → Skip (0)
+  ✓ both-gates-closed → Skip (0)
+  ✓ weak-votes-open-gates → Skip (0.1785)
+  wrote output/gate-behavior/gate-behavior-results.json
+  wrote output/gate-behavior/gate-behavior-audit.md

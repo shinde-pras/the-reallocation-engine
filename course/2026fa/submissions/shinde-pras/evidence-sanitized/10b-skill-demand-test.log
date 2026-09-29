@@ -1,0 +1,89 @@
+skill-demand-monitor verification harness
+
+  ✗ sample-size gate halts on 3 postings and emits no ranked list
+      Command failed: node <repo>/scripts/score/skill-demand-monitor.mjs <tmp>/skill-demand-test-mWoZm1/tiny.json --out-dir <tmp>/skill-demand-test-mWoZm1/run-oP8y7K --md <tmp>/skill-demand-test-mWoZm1/run-oP8y7K/report.md --role-filter ai engineer
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '<repo>/scripts/score/skill-demand-monitor.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+
+  ✗ known skill count matches a hand-count of the committed fixture (python: 22/22)
+      Command failed: node <repo>/scripts/score/skill-demand-monitor.mjs <repo>/data/examples/skill-demand/example-postings.json --out-dir <tmp>/skill-demand-test-mWoZm1/run-NyZ9Vt --md <tmp>/skill-demand-test-mWoZm1/run-NyZ9Vt/report.md --role-filter ai engineer
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '<repo>/scripts/score/skill-demand-monitor.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+
+  ✗ a posting missing description_text is rejected with a named reason, not silently dropped
+      Command failed: node <repo>/scripts/score/skill-demand-monitor.mjs <tmp>/skill-demand-test-mWoZm1/missing-field.json --out-dir <tmp>/skill-demand-test-mWoZm1/run-6o7rDU --md <tmp>/skill-demand-test-mWoZm1/run-6o7rDU/report.md --role-filter ai engineer
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '<repo>/scripts/score/skill-demand-monitor.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+
+  ✗ postings with no recognized skills set low_coverage=true rather than a silently-thin ranking
+      Command failed: node <repo>/scripts/score/skill-demand-monitor.mjs <tmp>/skill-demand-test-mWoZm1/no-taxonomy-hits.json --out-dir <tmp>/skill-demand-test-mWoZm1/run-wberji --md <tmp>/skill-demand-test-mWoZm1/run-wberji/report.md --role-filter ai engineer
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '<repo>/scripts/score/skill-demand-monitor.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+
+  ✗ a --min-sample override below the default is threaded through and flagged, never reported as unconditional confidence
+      Command failed: node <repo>/scripts/score/skill-demand-monitor.mjs <repo>/data/examples/skill-demand/example-postings.json --out-dir <tmp>/skill-demand-test-mWoZm1/run-05bz3g --md <tmp>/skill-demand-test-mWoZm1/run-05bz3g/report.md --role-filter ai engineer --min-sample 2
+node:internal/modules/cjs/loader:1210
+  throw err;
+  ^
+
+Error: Cannot find module '<repo>/scripts/score/skill-demand-monitor.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1207:15)
+    at Module._load (node:internal/modules/cjs/loader:1038:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.20.2
+
+
+0 passed, 5 failed

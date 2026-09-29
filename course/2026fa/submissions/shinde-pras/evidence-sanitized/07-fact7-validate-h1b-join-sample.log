@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<repo>/scripts/sec/validate-h1b-join-sample.py", line 230, in <module>
+    main()
+  File "<repo>/scripts/sec/validate-h1b-join-sample.py", line 130, in main
+    rows = read_rows(csv_path)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<repo>/scripts/sec/validate-h1b-join-sample.py", line 56, in read_rows
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.16/Frameworks/Python.framework/Versions/3.11/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '<repo>/data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv'

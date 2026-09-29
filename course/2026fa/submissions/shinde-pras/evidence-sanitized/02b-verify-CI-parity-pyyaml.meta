@@ -1,0 +1,6 @@
+command: npm run verify
+cwd: <repo>
+date: 2026-09-28T23:19:17Z
+node: v20.20.2  python3: Python 3.11.16 (<scratch>/venv-ciparity/bin/python3)  git: 015843d
+exit_code: 0
+label: CI-parity re-run (scratchpad venv with pyyaml 6.0.3; mirrors CI 'pip install pyyaml'). The as-is failure is 02-verify.

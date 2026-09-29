@@ -1,0 +1,63 @@
+=== Gate-Behavior Harness — Bayesian Role Scorer (Ch.11) ===
+scorer   : scripts/score/role-scorer.mjs
+fixtures : scripts/score/fixtures/gate-cases.json (10 cases)
+provenance: fixtures are SYNTHETIC test vectors — no real company data
+
+--- CONFIG ---
+PASS  config-matches-fixtures        all 6 values match the config the expected values were derived from
+
+--- BASELINE (unmodified scorer) ---
+PASS  G1-liveness-zero-with-maximal-votes
+        composite 0 (vote_sum 0.65 x gate_product 0) -> Skip
+PASS  G2-timeline-zero-with-maximal-votes
+        composite 0 (vote_sum 0.65 x gate_product 0) -> Skip
+PASS  G3-gate-boundary-at-threshold
+        composite 0.0325 (vote_sum 0.65 x gate_product 0.05) -> Skip
+PASS  G4-gate-boundary-just-above-threshold
+        composite 0.039 (vote_sum 0.65 x gate_product 0.06) -> Skip
+PASS  G5-two-partial-gates-multiply
+        composite 0.1625 (vote_sum 0.65 x gate_product 0.25) -> Skip
+PASS  G6-healthy-gates-strong-votes-apply
+        composite 0.555 (vote_sum 0.555 x gate_product 1) -> Apply
+PASS  G7-soft-timeline-demotes-apply-to-consider
+        composite 0.3052 (vote_sum 0.555 x gate_product 0.55) -> Consider
+PASS  G8-override-without-reason-is-ignored
+        composite 0.065 (vote_sum 0.065 x gate_product 1) -> Skip
+PASS  G9a-role-quality-absent
+        composite 0.325 (vote_sum 0.325 x gate_product 1) -> Apply
+PASS  G9b-role-quality-maximal
+        composite 0.325 (vote_sum 0.325 x gate_product 1) -> Apply
+
+--- STRUCTURAL (all cases, checked against the scorer's own trace) ---
+PASS  arithmetic-identity
+        composite == vote_sum x gate_product (tol 0.001) for 10/10 cases
+PASS  trace-source-labels
+        every vote and both gates carry a source label for 10/10 cases
+PASS  both-gates-present
+        liveness and timeline both appear as gates in 10/10 cases
+
+--- PAIRED (cross-case relations) ---
+WARN  P1-role-quality-inert
+        G9a-role-quality-absent composite 0.325 vs G9b-role-quality-maximal composite 0.325 -> equal: true
+        role_quality p moved 0.0 -> 1.0 with no change to the composite. This is expected while weights.role_quality = 0.0, and is the open authorial decision recorded in DOMAIN.md gap 3 — not a code defect. Reported so it cannot be forgotten.
+
+--- NEGATIVE CONTROL (mutated scorer: gates as additive votes) ---
+      mutation applied: 2/2 patterns matched (gates-become-additive-votes, closed-gate-branch-removed)
+CAUGHT  G1-liveness-zero-with-maximal-votes  baseline PASS -> mutant FAIL (mutant composite 0.8, rec Apply)
+CAUGHT  G2-timeline-zero-with-maximal-votes  baseline PASS -> mutant FAIL (mutant composite 0.85, rec Consider)
+CAUGHT  G3-gate-boundary-at-threshold  baseline PASS -> mutant FAIL (mutant composite 0.81, rec Apply)
+CAUGHT  G4-gate-boundary-just-above-threshold  baseline PASS -> mutant FAIL (mutant composite 0.812, rec Apply)
+CAUGHT  G5-two-partial-gates-multiply  baseline PASS -> mutant FAIL (mutant composite 0.825, rec Consider)
+
+      negative control: 5/5 gate-sensitive assertions correctly failed under mutation
+
+=== SUMMARY ===
+config drift      : none
+baseline cases    : 10 passed, 0 failed  (of 10)
+structural checks : 3 passed, 0 failed  (of 3)
+paired checks     : 1 warning(s)
+negative control  : PASS — mutation caught by 5 assertion(s)
+RESULT            : PASS
+
+artifacts: output/gate-harness/gate-harness-2026-09-28.json
+           output/gate-harness/gate-harness-2026-09-28-audit.md
