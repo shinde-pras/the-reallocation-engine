@@ -1,0 +1,31 @@
+### a) as-of after the 2027-08-30 deadline
+$ python3 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py --opt-start 2027-06-01 --unemployment-days 90 --hiring-lag-weeks 10 --candidates scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/fixtures/persona_candidates.json --as-of 2027-09-01 --out-dir <scratch>/out-a
+pm_opt_clock: error: no time left: deadline 2027-08-30 is not after as-of 2027-09-01 (days available = -2)
+No outputs were written.
+exit_code: 2
+out-dir exists: no (no files written)
+
+### b) out-dir data/examples (role-scores.json there is tracked)
+$ python3 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py --opt-start 2027-06-01 --unemployment-days 90 --hiring-lag-weeks 10 --candidates scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/fixtures/persona_candidates.json --as-of 2027-07-01 --out-dir data/examples
+pm_opt_clock: error: refusing to overwrite tracked file(s): data/examples/role-scores.json, data/examples/role-scores.md
+No outputs were written.
+exit_code: 2
+tracked changes (git status --porcelain --untracked-files=no): ''
+checksum: data/examples/role-scores.json: OK
+checksum: data/examples/role-scores.md: OK
+untracked files in data/examples: ''
+
+### c) persona copy, r01 fit = 1.5
+$ python3 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py --opt-start 2027-06-01 --unemployment-days 90 --hiring-lag-weeks 10 --candidates <scratch>/persona-fit15.json --as-of 2027-07-01 --out-dir <scratch>/out-c
+pm_opt_clock: error: candidates file is invalid:
+  - candidate 'r01-linkedin-apm': fit must be a number from 0 to 1, got 1.5
+No outputs were written.
+exit_code: 2
+out-dir exists: no (no files written)
+
+### d) persona copy, r02 liveness_result uncertain + url removed
+$ python3 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py --opt-start 2027-06-01 --unemployment-days 90 --hiring-lag-weeks 10 --candidates <scratch>/persona-uncertain-nourl.json --as-of 2027-07-01 --out-dir <scratch>/out-d
+pm_opt_clock: 10 candidates -> cannot_evaluate 3, hold 2, scored 5; scorer called; wrote roles.json, profile.json, run-log.json, report.md, role-scores.json, role-scores.md to <scratch>/out-d
+exit_code: 0
+files in out-dir: profile.json report.md role-scores.json role-scores.md roles.json run-log.json 
+

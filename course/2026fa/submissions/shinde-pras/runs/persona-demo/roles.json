@@ -1,0 +1,134 @@
+[
+  {
+    "role_id": "r01-linkedin-apm",
+    "company": "LinkedIn Corp",
+    "title": "Associate Product Manager",
+    "sponsorship": {
+      "p": 0.7,
+      "tier": "Likely",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.7,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  },
+  {
+    "role_id": "r02-stripe-pm",
+    "company": "Stripe Inc",
+    "title": "Product Manager",
+    "sponsorship": {
+      "p": 0.5,
+      "tier": "Likely",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.6,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  },
+  {
+    "role_id": "r03-datadog-pm",
+    "company": "Datadog Inc",
+    "title": "Product Manager",
+    "sponsorship": {
+      "p": 0.5,
+      "tier": "Likely",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.5,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 0.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  },
+  {
+    "role_id": "r04-zscaler-pm",
+    "company": "Zscaler Inc",
+    "title": "Product Manager",
+    "sponsorship": {
+      "p": 0.3,
+      "tier": "Likely",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.55,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  },
+  {
+    "role_id": "r05-flywire-pm",
+    "company": "Flywire Corp",
+    "title": "Product Manager",
+    "sponsorship": {
+      "p": 0.2,
+      "tier": "Likely",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.45,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  },
+  {
+    "role_id": "r06-salesforce-apm",
+    "company": "Salesforce.com, Inc.",
+    "title": "Associate Product Manager",
+    "sponsorship": {
+      "p": 0.15,
+      "tier": "Unknown",
+      "source": "model-judgment"
+    },
+    "fit": {
+      "p": 0.4,
+      "source": "your-input"
+    },
+    "liveness": {
+      "factor": 1.0,
+      "source": "your-input"
+    },
+    "timeline": {
+      "factor": 0.8571428571428571,
+      "source": "your-input"
+    }
+  }
+]

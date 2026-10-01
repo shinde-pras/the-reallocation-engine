@@ -1,0 +1,281 @@
+{
+  "_scorer": "bayesian-role-scorer",
+  "_chapter": 11,
+  "generated": "2026-10-01",
+  "config": {
+    "weights": {
+      "sponsorship": 0.35,
+      "fit": 0.3,
+      "role_quality": 0
+    },
+    "apply_threshold": 0.3,
+    "consider_floor": 0.2,
+    "gate_zero": 0.05,
+    "soft_sponsorship_tiers": [
+      "likely",
+      "possible",
+      "unknown"
+    ]
+  },
+  "profile_needs_sponsorship": true,
+  "roles": [
+    {
+      "role_id": "r01-linkedin-apm",
+      "company": "LinkedIn Corp",
+      "title": "Associate Product Manager",
+      "composite": 0.39,
+      "recommendation": "Consider",
+      "machine_recommendation": "Consider",
+      "reason": "above threshold (0.390) but one soft spot: sponsorship tier \"Likely\"",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.7,
+            "weight": 0.35,
+            "contribution": 0.245,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.7,
+            "weight": 0.3,
+            "contribution": 0.21,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.455,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 1,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0.8571,
+        "arithmetic": "(0.7·0.35 + 0.7·0.3) × 1 × 0.8571428571428571 = 0.390"
+      }
+    },
+    {
+      "role_id": "r02-stripe-pm",
+      "company": "Stripe Inc",
+      "title": "Product Manager",
+      "composite": 0.3043,
+      "recommendation": "Consider",
+      "machine_recommendation": "Consider",
+      "reason": "above threshold (0.304) but one soft spot: sponsorship tier \"Likely\"",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.5,
+            "weight": 0.35,
+            "contribution": 0.175,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.6,
+            "weight": 0.3,
+            "contribution": 0.18,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.355,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 1,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0.8571,
+        "arithmetic": "(0.5·0.35 + 0.6·0.3) × 1 × 0.8571428571428571 = 0.304"
+      }
+    },
+    {
+      "role_id": "r03-datadog-pm",
+      "company": "Datadog Inc",
+      "title": "Product Manager",
+      "composite": 0,
+      "recommendation": "Skip",
+      "machine_recommendation": "Skip",
+      "reason": "gated: liveness ≈ 0.000 (a closed gate zeroes the composite regardless of votes)",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.5,
+            "weight": 0.35,
+            "contribution": 0.175,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.5,
+            "weight": 0.3,
+            "contribution": 0.15,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.325,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 0,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0,
+        "arithmetic": "(0.5·0.35 + 0.5·0.3) × 0 × 0.8571428571428571 = 0.000"
+      }
+    },
+    {
+      "role_id": "r04-zscaler-pm",
+      "company": "Zscaler Inc",
+      "title": "Product Manager",
+      "composite": 0.2314,
+      "recommendation": "Consider",
+      "machine_recommendation": "Consider",
+      "reason": "composite 0.231 in the Consider band [0.2, 0.3)",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.3,
+            "weight": 0.35,
+            "contribution": 0.105,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.55,
+            "weight": 0.3,
+            "contribution": 0.165,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.27,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 1,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0.8571,
+        "arithmetic": "(0.3·0.35 + 0.55·0.3) × 1 × 0.8571428571428571 = 0.231"
+      }
+    },
+    {
+      "role_id": "r05-flywire-pm",
+      "company": "Flywire Corp",
+      "title": "Product Manager",
+      "composite": 0.1757,
+      "recommendation": "Skip",
+      "machine_recommendation": "Skip",
+      "reason": "composite 0.176 < 0.2 — time is better spent elsewhere",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.2,
+            "weight": 0.35,
+            "contribution": 0.07,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.45,
+            "weight": 0.3,
+            "contribution": 0.135,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.205,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 1,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0.8571,
+        "arithmetic": "(0.2·0.35 + 0.45·0.3) × 1 × 0.8571428571428571 = 0.176"
+      }
+    },
+    {
+      "role_id": "r06-salesforce-apm",
+      "company": "Salesforce.com, Inc.",
+      "title": "Associate Product Manager",
+      "composite": 0.1479,
+      "recommendation": "Skip",
+      "machine_recommendation": "Skip",
+      "reason": "composite 0.148 < 0.2 — time is better spent elsewhere",
+      "override": null,
+      "trace": {
+        "votes": [
+          {
+            "factor": "sponsorship",
+            "value": 0.15,
+            "weight": 0.35,
+            "contribution": 0.0525,
+            "source": "model-judgment"
+          },
+          {
+            "factor": "fit",
+            "value": 0.4,
+            "weight": 0.3,
+            "contribution": 0.12,
+            "source": "your-input"
+          }
+        ],
+        "vote_sum": 0.1725,
+        "gates": [
+          {
+            "factor": "liveness",
+            "multiplier": 1,
+            "source": "your-input"
+          },
+          {
+            "factor": "timeline",
+            "multiplier": 0.8571428571428571,
+            "source": "your-input"
+          }
+        ],
+        "gate_product": 0.8571,
+        "arithmetic": "(0.15·0.35 + 0.4·0.3) × 1 × 0.8571428571428571 = 0.148"
+      }
+    }
+  ]
+}
