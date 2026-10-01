@@ -22,6 +22,7 @@ import importlib.util
 import json
 import math
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -207,7 +208,7 @@ def classify_company(rows: List[Dict[str, str]]) -> Dict[str, Any]:
     out = {"status": "cannot_evaluate", "reason": None, "detail": "", "tier": None, "p": None,
            "rule_row": None, "matched_rows": [r["company_name"] for r in rows],
            "total_approvals": None, "total_denials": None, "approval_rate": None,
-           "titles": None, "pm_titles": None}  # type: Dict[str, Any]
+           "titles": None, "pm_titles": None, "warnings": []}  # type: Dict[str, Any]
     if not rows:
         out["reason"] = "not_in_csv"
         out["detail"] = "no row with this normalized name (exact match only, no aliases)"
@@ -218,8 +219,14 @@ def classify_company(rows: List[Dict[str, str]]) -> Dict[str, Any]:
         out["detail"] = "%d rows share the normalized name with different figures" % len(rows)
         return out
     row = rows[0]
-    out["total_denials"] = row["Total Denials"].strip() or None
-    out["approval_rate"] = row["Approval_Rate"].strip() or None
+    # Store denials and approval rate as numbers when the cell parses; otherwise keep the text and warn.
+    for column, key in (("Total Denials", "total_denials"), ("Approval_Rate", "approval_rate")):
+        try:
+            out[key] = parse_number(row[column])
+        except ValueError:
+            out[key] = row[column].strip()
+            out["warnings"].append("%s for %s is not a number: %r (kept as text)"
+                                   % (column, row["company_name"], row[column]))
     try:
         approvals = parse_number(row["Total Approvals"])
     except ValueError:
@@ -539,8 +546,14 @@ def render_report(params: Dict[str, Any], timeline: Dict[str, Any], records: Lis
     if not hold:
         lines.append("None.")
     for r in hold:
-        lines.append("- %s (%s): liveness result %r, checked %s via %s. Open the posting, record active or expired, and rerun."
-                     % (r["role_id"], r["company"], r["liveness"]["result"], r["liveness"]["checked_at"], r["liveness"]["source"]))
+        lv = r["liveness"]
+        lines.append("- %s: %s, %s" % (r["role_id"], r["company"], r["title"]))
+        lines.append("  - URL: %s" % (r["url"] if r["url"] else "none supplied"))
+        lines.append("  - liveness result: %s; checked at: %s; source: %s" % (lv["result"], lv["checked_at"], lv["source"]))
+        if r["url"]:
+            lines.append("  - check it with `npm run ats:liveness -- %s`, record active or expired, and rerun." % shlex.quote(r["url"]))
+        else:
+            lines.append("  - no URL supplied: find the posting yourself, record active or expired, and rerun.")
 
     lines += ["", "## Cannot evaluate", ""]
     if not cannot:
@@ -697,7 +710,14 @@ def build_run_log(params: Dict[str, Any], timeline: Dict[str, Any], records: Lis
             "stale_files_not_written_by_this_run": labeled(stale, "record", script),
         },
         "candidates": [],
+        "warnings": [],
     }
+    for r in records:
+        for msg in r["sponsorship"].get("warnings", []):
+            log["warnings"].append(labeled("%s: %s" % (r["role_id"], msg), "model-judgment", script))
+        if r["status"] == "hold" and not r["url"]:
+            log["warnings"].append(labeled("%s: held for liveness but no URL was supplied; find the posting by hand"
+                                           % r["role_id"], "model-judgment", script))
     scorer_src = "scripts/score/role-scorer.mjs (weights from book Ch.11)"
     for r in records:
         sp = r["sponsorship"]

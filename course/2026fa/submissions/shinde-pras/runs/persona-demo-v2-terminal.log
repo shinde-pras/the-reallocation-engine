@@ -1,0 +1,4 @@
+$ python3 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py --candidates scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/fixtures/persona_candidates.json --as-of 2027-07-01 --opt-start 2027-06-01 --unemployment-days 90 --hiring-lag-weeks 10 --out-dir course/2026fa/submissions/shinde-pras/runs/persona-demo-v2
+# python3: Python 3.9.6 · node: v20.20.2 · commit: 0b0d042 + uncommitted CP4b changes to pm_opt_clock.py · run at 2026-10-01T20:09:12Z
+pm_opt_clock: 10 candidates -> cannot_evaluate 3, hold 1, scored 6; scorer called; wrote roles.json, profile.json, run-log.json, report.md, role-scores.json, role-scores.md to course/2026fa/submissions/shinde-pras/runs/persona-demo-v2
+exit_code: 0

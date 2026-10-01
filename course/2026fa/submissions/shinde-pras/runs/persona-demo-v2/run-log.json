@@ -1,0 +1,1605 @@
+{
+  "tool": {
+    "value": "pm_opt_clock 0.1.0",
+    "label": "record",
+    "source": "pm_opt_clock.py"
+  },
+  "recipe": {
+    "value": "recipes/cases/2026fa/shinde-pras-pm-apm-opt-clock.md v0.1.0",
+    "label": "record",
+    "source": "pm_opt_clock.py"
+  },
+  "generated_at": {
+    "value": "2026-10-01T16:09:13",
+    "label": "record",
+    "source": "system clock"
+  },
+  "parameters": {
+    "as_of": {
+      "value": "2027-07-01",
+      "label": "your-input",
+      "source": "--as-of"
+    },
+    "opt_start": {
+      "value": "2027-06-01",
+      "label": "your-input",
+      "source": "--opt-start"
+    },
+    "unemployment_days": {
+      "value": "90",
+      "label": "your-input",
+      "source": "--unemployment-days"
+    },
+    "hiring_lag_weeks": {
+      "value": "10",
+      "label": "your-input",
+      "source": "--hiring-lag-weeks"
+    },
+    "csv": {
+      "value": "default shipped CSV",
+      "label": "your-input",
+      "source": "--csv"
+    }
+  },
+  "timeline": {
+    "deadline": {
+      "value": "2027-08-30",
+      "label": "your-input",
+      "source": "computed from --as-of, --opt-start, --unemployment-days, --hiring-lag-weeks"
+    },
+    "days_available": {
+      "value": 60,
+      "label": "your-input",
+      "source": "computed from --as-of, --opt-start, --unemployment-days, --hiring-lag-weeks"
+    },
+    "days_needed": {
+      "value": 70.0,
+      "label": "your-input",
+      "source": "computed from --as-of, --opt-start, --unemployment-days, --hiring-lag-weeks"
+    },
+    "factor": {
+      "value": 0.8571428571428571,
+      "label": "your-input",
+      "source": "computed from --as-of, --opt-start, --unemployment-days, --hiring-lag-weeks"
+    },
+    "arithmetic": {
+      "value": "deadline = 2027-06-01 + 90 days = 2027-08-30; days available = 2027-08-30 - 2027-07-01 = 60; days needed = 10 weeks x 7 = 70; factor = min(1, 60 / 70) = 0.8571",
+      "label": "your-input",
+      "source": "computed from --as-of, --opt-start, --unemployment-days, --hiring-lag-weeks"
+    }
+  },
+  "constants": {
+    "approvals_threshold": {
+      "value": 50,
+      "label": "model-judgment",
+      "source": "recipe Sponsorship rule v0.1"
+    },
+    "p_values": {
+      "value": {
+        "entry_level": 0.7,
+        "no_level": 0.5,
+        "senior_only": 0.3,
+        "small_pm": 0.2,
+        "no_pm_title": 0.15
+      },
+      "label": "model-judgment",
+      "source": "recipe Sponsorship rule v0.1"
+    },
+    "pm_family_pattern": {
+      "value": "product manager|product management|\\bapm\\b",
+      "label": "model-judgment",
+      "source": "recipe Sponsorship rule v0.1"
+    },
+    "entry_level_pattern": {
+      "value": "associate product manager|\\bapm\\b|\\bproduct manager\\s+i\\b|\\bjunior\\b|\\bnew[\\s-]?grad",
+      "label": "model-judgment",
+      "source": "recipe Sponsorship rule v0.1"
+    },
+    "senior_pattern": {
+      "value": "\\b(?:senior|sr|staff|principal|group|lead|director|head|vp|ii|iii|iv|v|vi|vii|viii|ix|x)\\b",
+      "label": "model-judgment",
+      "source": "recipe Sponsorship rule v0.1"
+    },
+    "profile_authorization": {
+      "value": "F-1 OPT, needs H-1B sponsorship",
+      "label": "model-judgment",
+      "source": "recipe Workflow step 5"
+    }
+  },
+  "scorer": {
+    "called": {
+      "value": true,
+      "label": "record",
+      "source": "pm_opt_clock.py"
+    },
+    "command": {
+      "value": [
+        "npm",
+        "run",
+        "score",
+        "--",
+        "<roles.json>",
+        "--profile",
+        "<profile.json>",
+        "--out-dir",
+        "<out-dir>"
+      ],
+      "label": "record",
+      "source": "pm_opt_clock.py"
+    },
+    "stale_files_not_written_by_this_run": {
+      "value": [],
+      "label": "record",
+      "source": "pm_opt_clock.py"
+    }
+  },
+  "candidates": [
+    {
+      "role_id": {
+        "value": "r01-linkedin-apm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "LinkedIn Corp",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Associate Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r01",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.7,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "linkedin",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "LINKEDIN CORP"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 4962.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 28.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 99.43887775551104,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Sr Software Engineer",
+            "Staff Software Engineer",
+            "Sr. Software Engineer, Systems Infrastructure",
+            "Sr Data Scientist",
+            "Software Engineer",
+            "Sr Software Engineer",
+            "Staff Software Engineer",
+            "Staff Software Engineer, Systems Infrastructure",
+            "Associate Product Manager",
+            "Sr. Software Engineer, Machine Learning"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "Associate Product Manager"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.7,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals at least 50 and an entry-level PM title listed",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0.39,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "above threshold (0.390) but one soft spot: sponsorship tier \"Likely\"",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.7\u00b70.35 + 0.7\u00b70.3) \u00d7 1 \u00d7 0.8571428571428571 = 0.390",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r02-stripe-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Stripe Inc",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r02",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.6,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "stripe",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "STRIPE INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 1250.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 22.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 98.27044025157232,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Software Engineer",
+            "Backend Engineer",
+            "Risk Strategist",
+            "Product Manager",
+            "Engineering Manager"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "Product Manager"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.5,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals at least 50 and a PM-family title with no level marker",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0.3043,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "above threshold (0.304) but one soft spot: sponsorship tier \"Likely\"",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.5\u00b70.35 + 0.6\u00b70.3) \u00d7 1 \u00d7 0.8571428571428571 = 0.304",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r03-datadog-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Datadog Inc",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r03",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.5,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "datadog",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "DATADOG INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 340.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 0.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 100.0,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Software Engineer II",
+            "Senior Software Engineer",
+            "Software Engineer",
+            "Privacy Counsel",
+            "PRODUCT MANAGER"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "PRODUCT MANAGER"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.5,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals at least 50 and a PM-family title with no level marker",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "expired",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 0.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "gated: liveness \u2248 0.000 (a closed gate zeroes the composite regardless of votes)",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.5\u00b70.35 + 0.5\u00b70.3) \u00d7 0 \u00d7 0.8571428571428571 = 0.000",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r04-zscaler-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Zscaler Inc",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r04",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.55,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "zscaler",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "ZSCALER INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 802.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 12.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 98.52579852579852,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Software Engineer",
+            "Senior Product Manager",
+            "Senior Software Engineer",
+            "Senior Software Engineer",
+            "Staff Software Engineer, QA"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "Senior Product Manager"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.3,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals at least 50 and PM-family titles only at senior levels",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0.2314,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Consider",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "composite 0.231 in the Consider band [0.2, 0.3)",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.3\u00b70.35 + 0.55\u00b70.3) \u00d7 1 \u00d7 0.8571428571428571 = 0.231",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r05-flywire-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Flywire Corp",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r05",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.45,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "flywire",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "FLYWIRE CORP"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 36.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 2.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 94.73684210526316,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Digital Marketing Specialist",
+            "Product Manager",
+            "Application Security Engineer",
+            "Senior Technical Support Engineer II"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "Product Manager"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.2,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals below 50 and any PM-family title listed",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0.1757,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "composite 0.176 < 0.2 \u2014 time is better spent elsewhere",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.2\u00b70.35 + 0.45\u00b70.3) \u00d7 1 \u00d7 0.8571428571428571 = 0.176",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r06-salesforce-apm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Salesforce.com, Inc.",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Associate Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r06",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.4,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "scored",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "scorable",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "salesforcecom",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "SALESFORCE COM INC",
+            "SALESFORCECOM INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 66.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 10.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 86.8421052631579,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Technical Program Manager"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Unknown",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.15,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "some approvals but no PM-family title listed",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": 0.8571428571428571,
+        "label": "your-input",
+        "source": "timeline gate"
+      },
+      "scorer": {
+        "composite": {
+          "value": 0.1479,
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "machine_recommendation": {
+          "value": "Skip",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "reason": {
+          "value": "composite 0.148 < 0.2 \u2014 time is better spent elsewhere",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        },
+        "arithmetic": {
+          "value": "(0.15\u00b70.35 + 0.4\u00b70.3) \u00d7 1 \u00d7 0.8571428571428571 = 0.148",
+          "label": "model-judgment",
+          "source": "scripts/score/role-scorer.mjs (weights from book Ch.11)"
+        }
+      }
+    },
+    {
+      "role_id": {
+        "value": "r07-alphabet-apm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Alphabet Inc.",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Associate Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r07",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.65,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "cannot_evaluate",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "cannot evaluate: no_h1b_data",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "alphabet",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "ALPHABET INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "row found but Total Approvals is empty (no trace is not the same as not sponsoring)",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": null,
+        "label": "your-input",
+        "source": "timeline gate"
+      }
+    },
+    {
+      "role_id": {
+        "value": "r08-nanthealth-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "NantHealth, Inc.",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r08",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.3,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "cannot_evaluate",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "cannot evaluate: ambiguous_rows",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "nanthealth",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "NANT HEALTH LLC",
+            "NANTHEALTH INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "2 rows share the normalized name with different figures",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": null,
+        "label": "your-input",
+        "source": "timeline gate"
+      }
+    },
+    {
+      "role_id": {
+        "value": "r09-northwind-apm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Northwind Product Labs",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Associate Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r09",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.5,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "cannot_evaluate",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "cannot evaluate: not_in_csv",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "northwindproductlabs",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": null,
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": null,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "no row with this normalized name (exact match only, no aliases)",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "active",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": 1.0,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": null,
+        "label": "your-input",
+        "source": "timeline gate"
+      }
+    },
+    {
+      "role_id": {
+        "value": "r10-roku-pm",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "company": {
+        "value": "Roku Inc",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "title": {
+        "value": "Product Manager",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "url": {
+        "value": "https://example.com/jobs/r10",
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "fit": {
+        "value": 0.8,
+        "label": "your-input",
+        "source": "candidates file"
+      },
+      "status": {
+        "value": "hold",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "reason": {
+        "value": "HOLD: liveness uncertain",
+        "label": "model-judgment",
+        "source": "recipe Sponsorship rule v0.1 rules applied by pm_opt_clock.py"
+      },
+      "csv": {
+        "normalized_name": {
+          "value": "roku",
+          "label": "model-judgment",
+          "source": "normalize_company_name (normalize.py:22)"
+        },
+        "matched_rows": {
+          "value": [
+            "ROKU INC"
+          ],
+          "label": "record",
+          "source": "80 Days CSV"
+        },
+        "total_approvals": {
+          "value": 654.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Approvals"
+        },
+        "total_denials": {
+          "value": 4.0,
+          "label": "record",
+          "source": "80 Days CSV: Total Denials"
+        },
+        "approval_rate": {
+          "value": 99.3920972644377,
+          "label": "record",
+          "source": "80 Days CSV: Approval_Rate"
+        },
+        "titles": {
+          "value": [
+            "Senior Software Engineer",
+            "Senior Data Scientist",
+            "Software Engineer",
+            "Product Manager",
+            "Senior Data Engineer"
+          ],
+          "label": "record",
+          "source": "80 Days CSV: top_job_titles_sponsored"
+        },
+        "pm_titles": {
+          "value": [
+            "Product Manager"
+          ],
+          "label": "model-judgment",
+          "source": "pm_family_pattern applied to titles"
+        }
+      },
+      "sponsorship": {
+        "tier": {
+          "value": "Likely",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "p": {
+          "value": 0.5,
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "rule_row": {
+          "value": "approvals at least 50 and a PM-family title with no level marker",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        },
+        "detail": {
+          "value": "",
+          "label": "model-judgment",
+          "source": "recipe Sponsorship rule v0.1"
+        }
+      },
+      "liveness": {
+        "result": {
+          "value": "uncertain",
+          "label": "your-input",
+          "source": "candidates file: liveness_result"
+        },
+        "factor": {
+          "value": null,
+          "label": "your-input",
+          "source": "recipe PG1 mapping"
+        },
+        "checked_at": {
+          "value": "2027-06-28",
+          "label": "your-input",
+          "source": "candidates file"
+        },
+        "source": {
+          "value": "by-hand (persona placeholder)",
+          "label": "your-input",
+          "source": "candidates file"
+        }
+      },
+      "timeline_factor": {
+        "value": null,
+        "label": "your-input",
+        "source": "timeline gate"
+      }
+    }
+  ],
+  "warnings": []
+}

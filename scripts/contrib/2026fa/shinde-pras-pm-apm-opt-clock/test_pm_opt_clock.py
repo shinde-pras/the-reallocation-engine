@@ -336,6 +336,53 @@ class CliTest(unittest.TestCase):
         self.assertTrue(all_values_labeled(log))
         self.assertIs(log["scorer"]["called"]["value"], False)
 
+    def test_hold_with_url_shows_url_and_liveness_command(self):
+        out = self.tmp / "out"
+        proc = self.run_cli([candidate("h1", "PlainPM Inc", result="uncertain")], out)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        report = (out / "report.md").read_text(encoding="utf-8")
+        hold = report.split("## On hold (liveness not confirmed)")[1].split("## Cannot evaluate")[0]
+        for text in ("h1: PlainPM Inc, Product Manager", "URL: https://example.com/jobs/h1",
+                     "liveness result: uncertain; checked at: 2027-06-28; source: ats:liveness",
+                     "`npm run ats:liveness -- https://example.com/jobs/h1`"):
+            self.assertIn(text, hold)
+        log = json.loads((out / "run-log.json").read_text(encoding="utf-8"))
+        self.assertEqual(log["warnings"], [])
+
+    def test_hold_without_url_says_none_and_warns(self):
+        out = self.tmp / "out"
+        cand = candidate("h2", "PlainPM Inc", result="uncertain")
+        del cand["url"]
+        proc = self.run_cli([cand], out)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        hold = (out / "report.md").read_text(encoding="utf-8").split("## On hold (liveness not confirmed)")[1]
+        self.assertIn("URL: none supplied", hold)
+        self.assertIn("no URL supplied: find the posting yourself", hold)
+        self.assertNotIn("npm run ats:liveness", hold.split("## Cannot evaluate")[0])
+        log = json.loads((out / "run-log.json").read_text(encoding="utf-8"))
+        self.assertTrue(all_values_labeled(log))
+        warns = [w for w in log["warnings"] if w["value"].startswith("h2:") and "no URL" in w["value"]]
+        self.assertEqual(len(warns), 1)
+        self.assertEqual(warns[0]["label"], "model-judgment")
+
+    def test_denials_and_rate_are_numbers_when_they_parse(self):
+        r = m.classify_company(INDEX[m.normalize_company_name("EntryCo Inc", SUFFIXES)])
+        self.assertEqual((r["total_denials"], r["approval_rate"]), (2.0, 98.36))
+        self.assertIsInstance(r["total_denials"], float)
+        self.assertEqual(r["warnings"], [])
+        bad = m.classify_company([{"company_name": "ODDCELLS INC", "Total Approvals": "60.0", "Total Denials": "n/a",
+                                   "Approval_Rate": "98.3", "top_job_titles_sponsored": "['Product Manager']"}])
+        self.assertEqual(bad["total_denials"], "n/a")
+        self.assertEqual(bad["approval_rate"], 98.3)
+        self.assertEqual(len(bad["warnings"]), 1)
+        self.assertIn("Total Denials", bad["warnings"][0])
+        out = self.tmp / "out"
+        self.assertEqual(self.run_cli([candidate("h3", "EntryCo Inc", result="uncertain")], out).returncode, 0)
+        csv_part = json.loads((out / "run-log.json").read_text(encoding="utf-8"))["candidates"][0]["csv"]
+        for key in ("total_approvals", "total_denials", "approval_rate"):
+            self.assertIsInstance(csv_part[key]["value"], float, key)
+            self.assertEqual(csv_part[key]["label"], "record")
+
     @unittest.skipIf(shutil.which("node") is None or shutil.which("npm") is None,
                      "node/npm not on PATH: put Node 20 on PATH to run the scorer integration test")
     def test_integration_real_scorer_keeps_sponsorship_weight(self):
