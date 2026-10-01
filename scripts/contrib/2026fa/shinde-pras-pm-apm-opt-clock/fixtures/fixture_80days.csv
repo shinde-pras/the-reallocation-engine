@@ -1,0 +1,18 @@
+company_name,Total Approvals,Total Denials,Approval_Rate,top_job_titles_sponsored
+ENTRYCO INC,120.0,2.0,98.36,"['Associate Product Manager', 'Software Engineer']"
+PLAINPM INC,80.0,1.0,98.77,"['Product Manager', 'Data Scientist']"
+SENIORONLY INC,75.0,0.0,100.0,"['Senior Product Manager', 'Staff Product Manager', 'Product Manager II']"
+SMALLPM LLC,12.0,0.0,100.0,"['Product Manager']"
+NOPM CORP,200.0,4.0,98.04,"['Software Engineer', 'Technical Program Manager', 'Project Manager']"
+SMALLNOPM INC,8.0,0.0,100.0,"['Data Scientist']"
+NODATA INC,,,,
+ACME COM INC,60.0,2.0,96.77,"['Product Manager']"
+ACMECOM INC,60.0,2.0,96.77,"['Product Manager']"
+SPLIT HEALTH LLC,,,,
+SPLITHEALTH INC,20.0,0.0,100.0,"['Software Engineer']"
+ZEROAPPR INC,0.0,3.0,0.0,"['Product Manager']"
+MIXEDLEVEL INC,90.0,1.0,98.9,"['Senior Product Manager', 'Associate Product Manager']"
+SENIORI INC,70.0,0.0,100.0,"['Senior Product Manager I']"
+APMWORD INC,65.0,0.0,100.0,"['APM, Payments']"
+BADTITLES INC,70.0,0.0,100.0,Product Manager; Software Engineer
+TRUNCATED INC,55.0,0.0,100.0,"['Product Manager', 'Software Engineer'"

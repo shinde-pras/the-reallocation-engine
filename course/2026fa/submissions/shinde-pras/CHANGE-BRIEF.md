@@ -59,6 +59,7 @@ Not covered (will be repeated under "did not test"): H-1B lottery odds and recen
 
 ## 7. Revisions
 - 2026-09-28, before the first commit: after a fact-check against the repo, corrected the Form D count (15 records, 14 distinct companies) and the requests-import wording, and added the fit fact and failure case F6. Sections 5 and 6 were not changed.
+- 2026-09-30, during the prototype build (CP3): (a) The prototype found three situations the recipe's sponsorship table does not cover: Total Approvals of 0 (5 rows in the real CSV), a non-numeric Total Approvals, and a non-empty title list that cannot be parsed. It reports them as "cannot evaluate: undefined_case" and does not guess; the recipe text will be updated at a later checkpoint. (b) Failure case F4 says "end before start". The recipe has no OPT end input, only unemployment days, so the implemented check is days available of zero or less, or an unparseable date; an as-of date before OPT start is allowed because the clock has not started. (c) Known limitation found in review: level markers match anywhere in a PM title, so "Product Manager, Lead Generation" would be read as senior, and arabic-numeral levels are not read as markers. Documented, not fixed in v0.1. Sections 5 and 6 were not changed.
 - (append later dated entries; do not rewrite sections 5 or 6)
 
 ## 8. Who did what
