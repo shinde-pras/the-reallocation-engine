@@ -1,0 +1,5 @@
+command: python3 -m unittest -v
+cwd: <repo>
+date: 2026-10-01T20:13:39Z
+node: v20.20.2  git: 9b82a34
+exit_code: 0

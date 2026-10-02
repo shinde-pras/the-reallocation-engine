@@ -1,0 +1,141 @@
+$ git fetch upstream
+upstream/main: 015843d  merge-base: 015843d
+$ git diff --stat upstream/main...HEAD
+ .../2026fa/submissions/shinde-pras/CHANGE-BRIEF.md |   67 +
+ .../2026fa/submissions/shinde-pras/FRICTIONAL.md   |   45 +
+ .../shinde-pras/evidence-sanitized/01-doctor.log   |   64 +
+ .../shinde-pras/evidence-sanitized/01-doctor.meta  |    5 +
+ .../shinde-pras/evidence-sanitized/02-verify.log   |   16 +
+ .../shinde-pras/evidence-sanitized/02-verify.meta  |    5 +
+ .../02b-verify-CI-parity-pyyaml.log                |   15 +
+ .../02b-verify-CI-parity-pyyaml.meta               |    6 +
+ .../evidence-sanitized/03-ats-scan-dry-run.log     |    5 +
+ .../evidence-sanitized/03-ats-scan-dry-run.meta    |    5 +
+ .../evidence-sanitized/04-score-ch11.log           |    6 +
+ .../evidence-sanitized/04-score-ch11.meta          |    5 +
+ .../evidence-sanitized/05-ats-liveness-example.log |   10 +
+ .../05-ats-liveness-example.meta                   |    5 +
+ .../evidence-sanitized/06-fact7-bls-local-wage.log |    7 +
+ .../06-fact7-bls-local-wage.meta                   |    5 +
+ .../07-fact7-validate-h1b-join-sample.log          |   13 +
+ .../07-fact7-validate-h1b-join-sample.meta         |    5 +
+ .../08-pii-scan-working-tree.log                   |    6 +
+ .../08-pii-scan-working-tree.meta                  |    5 +
+ .../evidence-sanitized/09a-ci-shukla-harness.log   |   14 +
+ .../evidence-sanitized/09a-ci-shukla-harness.meta  |    5 +
+ .../evidence-sanitized/09b-ci-fuzz-invariants.log  |   14 +
+ .../evidence-sanitized/09b-ci-fuzz-invariants.meta |    5 +
+ .../evidence-sanitized/09c-ci-tapkir-harness.log   |   11 +
+ .../evidence-sanitized/09c-ci-tapkir-harness.meta  |    5 +
+ .../09d-ci-dhamija-gate-harness.log                |   63 +
+ .../09d-ci-dhamija-gate-harness.meta               |    5 +
+ .../09e-ci-yuqing-gate-harness.log                 |   14 +
+ .../09e-ci-yuqing-gate-harness.meta                |    5 +
+ .../09f-ci-ma-scorer-harness.log                   |   14 +
+ .../09f-ci-ma-scorer-harness.meta                  |    5 +
+ .../evidence-sanitized/10a-output-linter-test.log  |   14 +
+ .../evidence-sanitized/10a-output-linter-test.meta |    5 +
+ .../evidence-sanitized/10b-skill-demand-test.log   |   89 ++
+ .../evidence-sanitized/10b-skill-demand-test.meta  |    5 +
+ .../shinde-pras/runs/break-attempts-terminal.log   |   31 +
+ .../shinde-pras/runs/persona-demo-terminal.log     |    4 +
+ .../shinde-pras/runs/persona-demo-v2-terminal.log  |    4 +
+ .../shinde-pras/runs/persona-demo-v2/profile.json  |    3 +
+ .../shinde-pras/runs/persona-demo-v2/report.md     |   73 +
+ .../runs/persona-demo-v2/role-scores.json          |  281 ++++
+ .../runs/persona-demo-v2/role-scores.md            |   16 +
+ .../shinde-pras/runs/persona-demo-v2/roles.json    |  134 ++
+ .../shinde-pras/runs/persona-demo-v2/run-log.json  | 1605 ++++++++++++++++++++
+ .../shinde-pras/runs/persona-demo/profile.json     |    3 +
+ .../shinde-pras/runs/persona-demo/report.md        |   70 +
+ .../shinde-pras/runs/persona-demo/role-scores.json |  281 ++++
+ .../shinde-pras/runs/persona-demo/role-scores.md   |   16 +
+ .../shinde-pras/runs/persona-demo/roles.json       |  134 ++
+ .../shinde-pras/runs/persona-demo/run-log.json     | 1604 +++++++++++++++++++
+ .../submissions/shinde-pras/runs/role-scores.json  |  241 +++
+ .../submissions/shinde-pras/runs/role-scores.md    |   15 +
+ .../2026fa/shinde-pras-pm-apm-opt-clock.card.md    |   36 +
+ .../cases/2026fa/shinde-pras-pm-apm-opt-clock.md   |  123 ++
+ .../2026fa/shinde-pras-pm-apm-opt-clock/README.md  |   54 +
+ .../fixtures/fixture_80days.csv                    |   18 +
+ .../fixtures/persona_candidates.json               |   32 +
+ .../shinde-pras-pm-apm-opt-clock/pm_opt_clock.py   |  783 ++++++++++
+ .../test_pm_opt_clock.py                           |  413 +++++
+ 60 files changed, 6547 insertions(+)
+$ git diff --name-only upstream/main...HEAD
+course/2026fa/submissions/shinde-pras/CHANGE-BRIEF.md
+course/2026fa/submissions/shinde-pras/FRICTIONAL.md
+course/2026fa/submissions/shinde-pras/evidence-sanitized/01-doctor.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/01-doctor.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/02-verify.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/02-verify.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/02b-verify-CI-parity-pyyaml.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/02b-verify-CI-parity-pyyaml.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/03-ats-scan-dry-run.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/03-ats-scan-dry-run.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/04-score-ch11.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/04-score-ch11.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/05-ats-liveness-example.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/05-ats-liveness-example.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/06-fact7-bls-local-wage.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/06-fact7-bls-local-wage.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/07-fact7-validate-h1b-join-sample.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/07-fact7-validate-h1b-join-sample.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/08-pii-scan-working-tree.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/08-pii-scan-working-tree.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09a-ci-shukla-harness.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09a-ci-shukla-harness.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09b-ci-fuzz-invariants.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09b-ci-fuzz-invariants.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09c-ci-tapkir-harness.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09c-ci-tapkir-harness.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09d-ci-dhamija-gate-harness.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09d-ci-dhamija-gate-harness.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09e-ci-yuqing-gate-harness.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09e-ci-yuqing-gate-harness.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09f-ci-ma-scorer-harness.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/09f-ci-ma-scorer-harness.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/10a-output-linter-test.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/10a-output-linter-test.meta
+course/2026fa/submissions/shinde-pras/evidence-sanitized/10b-skill-demand-test.log
+course/2026fa/submissions/shinde-pras/evidence-sanitized/10b-skill-demand-test.meta
+course/2026fa/submissions/shinde-pras/runs/break-attempts-terminal.log
+course/2026fa/submissions/shinde-pras/runs/persona-demo-terminal.log
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2-terminal.log
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/profile.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/report.md
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/role-scores.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/role-scores.md
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/roles.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo-v2/run-log.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo/profile.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo/report.md
+course/2026fa/submissions/shinde-pras/runs/persona-demo/role-scores.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo/role-scores.md
+course/2026fa/submissions/shinde-pras/runs/persona-demo/roles.json
+course/2026fa/submissions/shinde-pras/runs/persona-demo/run-log.json
+course/2026fa/submissions/shinde-pras/runs/role-scores.json
+course/2026fa/submissions/shinde-pras/runs/role-scores.md
+recipes/cases/2026fa/shinde-pras-pm-apm-opt-clock.card.md
+recipes/cases/2026fa/shinde-pras-pm-apm-opt-clock.md
+scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/README.md
+scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/fixtures/fixture_80days.csv
+scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/fixtures/persona_candidates.json
+scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py
+scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/test_pm_opt_clock.py
+== outside allowed namespaces:
+(none)
+== protected paths touched:
+(none)
+$ node scripts/pii-scan.mjs --diff upstream/main
+pii-scan: clean ✓
+exit_code: 0
+$ git log upstream/main..HEAD --format='%h | %ae | %ce'
+9b82a34 | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP4b: HOLD list shows URL; numeric fields in run-log; persona demo run 2
+0b0d042 | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP4a: persona demo run 1 (before HOLD-URL fix) and break attempts
+db62589 | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP3b: record demo and real-run predictions before running
+1537085 | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP3: prototype, fixture, 46 offline tests (persona demo not yet run)
+0cec16a | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP2: recipe and card, status DRAFT (prototype not yet built)
+504073d | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP1b: FRICTIONAL entry 1 (setup, recon, brief)
+22511c2 | 181007467+shinde-pras@users.noreply.github.com | 181007467+shinde-pras@users.noreply.github.com | CP1: CHANGE-BRIEF with frozen predictions; sanitized baseline evidence and reference score run
+commits: 7  non-noreply author/committer: 0  <school domain> in headers+bodies: 0

@@ -1,0 +1,38 @@
+== /not_in_csv|Nowhere|Nonexistent/
+63:    def test_row1_not_in_csv(self):
+64:        self.assertCannot(classify("Nonexistent Widgets Inc"), "not_in_csv")
+331:        proc = self.run_cli([candidate("h", "PlainPM Inc", result="uncertain"), candidate("n", "Nowhere Ltd")], out)
+== /ambiguous|collapse|SALESFORCE|alias/
+66:    def test_row2_ambiguous_rows(self):
+138:    def test_salesforce_spellings_collapse(self):
+144:    def test_identical_duplicate_rows_collapse(self):
+150:    def test_differing_duplicate_rows_are_ambiguous(self):
+155:    def test_no_alias_matching(self):
+== /senior|Senior/
+78:    def test_row6_senior_only(self):
+88:    def test_entry_level_title_wins_over_senior(self):
+91:    def test_title_with_senior_and_entry_markers_counts_as_senior(self):
+391:                 candidate("h", "SeniorOnly Inc", result="uncertain"), candidate("z", "ZeroAppr Inc")]
+== /2027-02-30|parse_date|RunError.*tl|past_deadline|zero_days|unparseable_dates/
+166:    def test_zero_days_available_errors(self):
+183:    def test_past_deadline_errors(self):
+187:    def test_unparseable_dates_error(self):
+188:        for bad in ("2027-13-01", "2027-02-30", "July 1 2027", "20270701", "2027-7-1", ""):
+313:        proc = self.run_cli([candidate("a", "EntryCo Inc")], out, **{"--as-of": "2027-02-30"})
+== /expired|uncertain|map_liveness|hold/
+331:        proc = self.run_cli([candidate("h", "PlainPM Inc", result="uncertain"), candidate("n", "Nowhere Ltd")], out)
+339:    def test_hold_with_url_shows_url_and_liveness_command(self):
+352:    def test_hold_without_url_says_none_and_warns(self):
+391:                 candidate("h", "SeniorOnly Inc", result="uncertain"), candidate("z", "ZeroAppr Inc")]
+== /missing_fit|pop\("fit"\)|fit is missing/
+225:    def test_missing_fit(self):
+251:        for mutate in (lambda c: c.pop("fit"), lambda c: c.update(fit=1.5), lambda c: c.update(fit=True),
+== /ZeroAppr|zero_approvals/
+97:    def test_zero_approvals_is_undefined_case(self):
+98:        self.assertCannot(classify("ZeroAppr Inc"), "undefined_case")
+391:                 candidate("h", "SeniorOnly Inc", result="uncertain"), candidate("z", "ZeroAppr Inc")]
+== /not a number: |Total Approvals": "[a-z]|non.?numeric|approvals_not_a_number/
+== /BadTitles|unparseable_titles/
+100:    def test_unparseable_titles_is_undefined_case(self):
+101:        self.assertCannot(classify("BadTitles Inc"), "undefined_case")
+== any fixture row with non-numeric Total Approvals:

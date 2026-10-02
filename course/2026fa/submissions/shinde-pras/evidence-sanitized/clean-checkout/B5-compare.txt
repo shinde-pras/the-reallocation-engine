@@ -1,0 +1,11 @@
+== role-scores.json (ignoring generated)
+IDENTICAL
+== roles.json
+IDENTICAL
+== profile.json
+IDENTICAL
+== run-log.json (ignoring generated_at)
+IDENTICAL
+== report.md and role-scores.md (extra check)
+report.md IDENTICAL
+role-scores.md IDENTICAL

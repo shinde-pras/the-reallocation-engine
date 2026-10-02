@@ -1,0 +1,54 @@
+test_denials_and_rate_are_numbers_when_they_parse (test_pm_opt_clock.CliTest) ... ok
+test_error_leaves_no_partial_outputs (test_pm_opt_clock.CliTest) ... ok
+test_hold_with_url_shows_url_and_liveness_command (test_pm_opt_clock.CliTest) ... ok
+test_hold_without_url_says_none_and_warns (test_pm_opt_clock.CliTest) ... ok
+test_integration_real_scorer_keeps_sponsorship_weight (test_pm_opt_clock.CliTest) ... ok
+test_nothing_scorable_skips_scorer (test_pm_opt_clock.CliTest) ... ok
+test_refuses_to_overwrite_tracked_file (test_pm_opt_clock.CliTest) ... ok
+test_mapping (test_pm_opt_clock.LivenessTest) ... ok
+test_differing_duplicate_rows_are_ambiguous (test_pm_opt_clock.NormalizationTest) ... ok
+test_identical_duplicate_rows_collapse (test_pm_opt_clock.NormalizationTest) ... ok
+test_no_alias_matching (test_pm_opt_clock.NormalizationTest) ... ok
+test_salesforce_spellings_collapse (test_pm_opt_clock.NormalizationTest) ... ok
+test_profile_phrase_never_matches_scorer_regex (test_pm_opt_clock.ProfileTest) ... ok
+test_regex_copies_match_scorer_source (test_pm_opt_clock.ProfileTest) ... ok
+test_apm_whole_word_is_entry_level (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_entry_level_title_wins_over_senior (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row1_not_in_csv (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row2_ambiguous_rows (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row3_no_h1b_data (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row4_entry_level_title (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row5_pm_title_no_level (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row6_senior_only (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row7_under_50_with_pm_title (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_row8_some_approvals_no_pm_title (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_title_with_senior_and_entry_markers_counts_as_senior (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_truncated_title_list_uses_regex_fallback (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_unparseable_titles_is_undefined_case (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_zero_approvals_is_undefined_case (test_pm_opt_clock.SponsorshipTableTest) ... ok
+test_exactly_enough_days_gives_one (test_pm_opt_clock.TimelineTest) ... ok
+test_more_than_enough_is_capped_at_one (test_pm_opt_clock.TimelineTest) ... ok
+test_non_positive_numbers_error (test_pm_opt_clock.TimelineTest) ... ok
+test_one_day_gives_one_seventieth (test_pm_opt_clock.TimelineTest) ... ok
+test_past_deadline_errors (test_pm_opt_clock.TimelineTest) ... ok
+test_unparseable_dates_error (test_pm_opt_clock.TimelineTest) ... ok
+test_zero_days_available_errors (test_pm_opt_clock.TimelineTest) ... ok
+test_known_limitation_arabic_numerals_and_jr_not_markers (test_pm_opt_clock.TitleRulesTest) ... ok
+test_known_limitation_marker_anywhere_in_title (test_pm_opt_clock.TitleRulesTest) ... ok
+test_levels (test_pm_opt_clock.TitleRulesTest) ... ok
+test_pm_family (test_pm_opt_clock.TitleRulesTest) ... ok
+test_bad_source_label (test_pm_opt_clock.ValidationTest) ... ok
+test_candidates_file_rejections (test_pm_opt_clock.ValidationTest) ... ok
+test_good_role_passes (test_pm_opt_clock.ValidationTest) ... ok
+test_missing_fit (test_pm_opt_clock.ValidationTest) ... ok
+test_missing_gate_factor (test_pm_opt_clock.ValidationTest) ... ok
+test_override_present (test_pm_opt_clock.ValidationTest) ... ok
+test_p_above_one (test_pm_opt_clock.ValidationTest) ... ok
+test_p_not_a_number (test_pm_opt_clock.ValidationTest) ... ok
+test_tier_avoid (test_pm_opt_clock.ValidationTest) ... ok
+test_tier_proven (test_pm_opt_clock.ValidationTest) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.359s
+
+OK

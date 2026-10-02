@@ -1,0 +1,5 @@
+command: python3.11 scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/test_pm_opt_clock.py -v
+cwd: <repo>
+date: 2026-10-01T20:13:38Z
+node: v20.20.2  git: 9b82a34
+exit_code: 0

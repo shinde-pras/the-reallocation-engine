@@ -1,0 +1,5 @@
+command: npm run verify
+cwd: <repo>
+date: 2026-10-01T20:14:08Z
+node: v20.20.2  python3: Python 3.11.16 (<scratch>/venv-clean/bin/python3)  git: 9b82a34
+exit_code: 0

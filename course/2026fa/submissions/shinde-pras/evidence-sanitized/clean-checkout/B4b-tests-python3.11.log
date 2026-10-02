@@ -1,0 +1,54 @@
+test_denials_and_rate_are_numbers_when_they_parse (__main__.CliTest.test_denials_and_rate_are_numbers_when_they_parse) ... ok
+test_error_leaves_no_partial_outputs (__main__.CliTest.test_error_leaves_no_partial_outputs) ... ok
+test_hold_with_url_shows_url_and_liveness_command (__main__.CliTest.test_hold_with_url_shows_url_and_liveness_command) ... ok
+test_hold_without_url_says_none_and_warns (__main__.CliTest.test_hold_without_url_says_none_and_warns) ... ok
+test_integration_real_scorer_keeps_sponsorship_weight (__main__.CliTest.test_integration_real_scorer_keeps_sponsorship_weight) ... ok
+test_nothing_scorable_skips_scorer (__main__.CliTest.test_nothing_scorable_skips_scorer) ... ok
+test_refuses_to_overwrite_tracked_file (__main__.CliTest.test_refuses_to_overwrite_tracked_file) ... ok
+test_mapping (__main__.LivenessTest.test_mapping) ... ok
+test_differing_duplicate_rows_are_ambiguous (__main__.NormalizationTest.test_differing_duplicate_rows_are_ambiguous) ... ok
+test_identical_duplicate_rows_collapse (__main__.NormalizationTest.test_identical_duplicate_rows_collapse) ... ok
+test_no_alias_matching (__main__.NormalizationTest.test_no_alias_matching) ... ok
+test_salesforce_spellings_collapse (__main__.NormalizationTest.test_salesforce_spellings_collapse) ... ok
+test_profile_phrase_never_matches_scorer_regex (__main__.ProfileTest.test_profile_phrase_never_matches_scorer_regex) ... ok
+test_regex_copies_match_scorer_source (__main__.ProfileTest.test_regex_copies_match_scorer_source) ... ok
+test_apm_whole_word_is_entry_level (__main__.SponsorshipTableTest.test_apm_whole_word_is_entry_level) ... ok
+test_entry_level_title_wins_over_senior (__main__.SponsorshipTableTest.test_entry_level_title_wins_over_senior) ... ok
+test_row1_not_in_csv (__main__.SponsorshipTableTest.test_row1_not_in_csv) ... ok
+test_row2_ambiguous_rows (__main__.SponsorshipTableTest.test_row2_ambiguous_rows) ... ok
+test_row3_no_h1b_data (__main__.SponsorshipTableTest.test_row3_no_h1b_data) ... ok
+test_row4_entry_level_title (__main__.SponsorshipTableTest.test_row4_entry_level_title) ... ok
+test_row5_pm_title_no_level (__main__.SponsorshipTableTest.test_row5_pm_title_no_level) ... ok
+test_row6_senior_only (__main__.SponsorshipTableTest.test_row6_senior_only) ... ok
+test_row7_under_50_with_pm_title (__main__.SponsorshipTableTest.test_row7_under_50_with_pm_title) ... ok
+test_row8_some_approvals_no_pm_title (__main__.SponsorshipTableTest.test_row8_some_approvals_no_pm_title) ... ok
+test_title_with_senior_and_entry_markers_counts_as_senior (__main__.SponsorshipTableTest.test_title_with_senior_and_entry_markers_counts_as_senior) ... ok
+test_truncated_title_list_uses_regex_fallback (__main__.SponsorshipTableTest.test_truncated_title_list_uses_regex_fallback) ... ok
+test_unparseable_titles_is_undefined_case (__main__.SponsorshipTableTest.test_unparseable_titles_is_undefined_case) ... ok
+test_zero_approvals_is_undefined_case (__main__.SponsorshipTableTest.test_zero_approvals_is_undefined_case) ... ok
+test_exactly_enough_days_gives_one (__main__.TimelineTest.test_exactly_enough_days_gives_one) ... ok
+test_more_than_enough_is_capped_at_one (__main__.TimelineTest.test_more_than_enough_is_capped_at_one) ... ok
+test_non_positive_numbers_error (__main__.TimelineTest.test_non_positive_numbers_error) ... ok
+test_one_day_gives_one_seventieth (__main__.TimelineTest.test_one_day_gives_one_seventieth) ... ok
+test_past_deadline_errors (__main__.TimelineTest.test_past_deadline_errors) ... ok
+test_unparseable_dates_error (__main__.TimelineTest.test_unparseable_dates_error) ... ok
+test_zero_days_available_errors (__main__.TimelineTest.test_zero_days_available_errors) ... ok
+test_known_limitation_arabic_numerals_and_jr_not_markers (__main__.TitleRulesTest.test_known_limitation_arabic_numerals_and_jr_not_markers) ... ok
+test_known_limitation_marker_anywhere_in_title (__main__.TitleRulesTest.test_known_limitation_marker_anywhere_in_title) ... ok
+test_levels (__main__.TitleRulesTest.test_levels) ... ok
+test_pm_family (__main__.TitleRulesTest.test_pm_family) ... ok
+test_bad_source_label (__main__.ValidationTest.test_bad_source_label) ... ok
+test_candidates_file_rejections (__main__.ValidationTest.test_candidates_file_rejections) ... ok
+test_good_role_passes (__main__.ValidationTest.test_good_role_passes) ... ok
+test_missing_fit (__main__.ValidationTest.test_missing_fit) ... ok
+test_missing_gate_factor (__main__.ValidationTest.test_missing_gate_factor) ... ok
+test_override_present (__main__.ValidationTest.test_override_present) ... ok
+test_p_above_one (__main__.ValidationTest.test_p_above_one) ... ok
+test_p_not_a_number (__main__.ValidationTest.test_p_not_a_number) ... ok
+test_tier_avoid (__main__.ValidationTest.test_tier_avoid) ... ok
+test_tier_proven (__main__.ValidationTest.test_tier_proven) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 0.358s
+
+OK

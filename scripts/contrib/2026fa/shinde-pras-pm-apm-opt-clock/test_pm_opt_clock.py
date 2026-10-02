@@ -336,6 +336,18 @@ class CliTest(unittest.TestCase):
         self.assertTrue(all_values_labeled(log))
         self.assertIs(log["scorer"]["called"]["value"], False)
 
+    def test_nonnumeric_approvals_is_undefined_case(self):
+        csv_path = self.tmp / "nonnumeric.csv"
+        csv_path.write_text("company_name,Total Approvals,Total Denials,Approval_Rate,top_job_titles_sponsored\n"
+                            "ODDNUM INC,n/a,2.0,98.0,\"['Product Manager']\"\n", encoding="utf-8")
+        out = self.tmp / "out"
+        proc = self.run_cli([candidate("u", "OddNum Inc")], out, **{"--csv": str(csv_path)})
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        rec = json.loads((out / "run-log.json").read_text(encoding="utf-8"))["candidates"][0]
+        self.assertEqual(rec["reason"]["value"], "cannot evaluate: undefined_case")
+        self.assertEqual(rec["status"]["value"], "cannot_evaluate")
+        self.assertIsNone(rec["sponsorship"]["p"]["value"])
+
     def test_hold_with_url_shows_url_and_liveness_command(self):
         out = self.tmp / "out"
         proc = self.run_cli([candidate("h1", "PlainPM Inc", result="uncertain")], out)
