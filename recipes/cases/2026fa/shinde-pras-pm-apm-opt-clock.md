@@ -1,9 +1,9 @@
 ---
 status: DRAFT
-todos_open: 6
+todos_open: 2
 last_gate: null
 attestation: null
-recipe_version: 0.1.0
+recipe_version: 0.1.1
 ---
 # PM/APM OPT-clock: sponsorship evidence and timeline check for large-company product roles
 
@@ -29,17 +29,17 @@ SNICKERDOODLE.md, DOMAIN.md (Known gaps), DATA_CONTRACT.md (Zero-Conditions), CO
 | Scoring | npm run score -- <roles.json> --profile <profile.json> --out-dir <dir> (scripts/score/role-scorer.mjs, used unchanged; exports nothing) | exists | as labeled per term |
 | roles.json shape | data/examples/ch11-roles.json | exists | n/a |
 | Liveness | npm run ats:liveness -- <url> (run by the person; results are entered as inputs; the prototype makes no network calls) | exists (needs Playwright Chromium) | record if from the command, your-input if checked by hand |
-| Prototype entry point | scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/ (planned; see additions A1 to A4) | planned, does not exist yet | n/a |
-| Run logs | logs/runs/2026fa-shinde-pras-1.md (never edit logs/RUN_LOG.md) | to be written | n/a |
+| Prototype | scripts/contrib/2026fa/shinde-pras-pm-apm-opt-clock/pm_opt_clock.py (run command in the README in the same folder; offline tests in test_pm_opt_clock.py) | exists | n/a |
+| Run logs | logs/runs/2026fa-shinde-pras-1.md (never edit logs/RUN_LOG.md) | exists (one entry, for the fictional persona run) | n/a |
 
 Not used, and why: role_quality (scorer weight is 0.0 and the H-1B data has no SOC field); bls:local-wage (feeds no decision and fails on a fresh clone); Form D funding (not a scorer term; only 14 distinct sample companies match the CSV and only one has H-1B data).
 
 ## Proposed additions
-None of these exist in the repo today.
-- A1: timeline factor computed from dates and a stated hiring lag (see the Timeline gate section). [TODO: DEV]
-- A2: sponsorship probability and tier computed from the CSV by the rule in the Sponsorship rule section. [TODO: DEV]
-- A3: mapping from a liveness result to a liveness factor, with unknown states held for a human. [TODO: DEV]
-- A4: validation of the scorer's input files before the scorer runs (see the Workflow section). [TODO: DEV]
+None of these existed in the repo before this recipe. A1 to A4 are now built in the prototype and covered by offline tests. A5 and A6 are proposals only and remain open.
+- A1: timeline factor computed from dates and a stated hiring lag (see the Timeline gate section). Built.
+- A2: sponsorship probability and tier computed from the CSV by the rule in the Sponsorship rule section. Built.
+- A3: mapping from a liveness result to a liveness factor, with unknown states held for a human. Built.
+- A4: validation of the scorer's input files before the scorer runs (see the Workflow section). Built.
 - A5: E-Verify participation check, relevant to a later STEM OPT extension. Not built in this version. [TODO: DATA SOURCE]
 - A6: optional per-role application-window dates, supplied by the person, to make the timeline gate differ by role. Not built in v0.1. [TODO: DEV]
 
@@ -74,8 +74,11 @@ All constants below are v0.1 assumptions (model-judgment), not values derived fr
 | approvals at least 50 and PM-family titles only at senior levels (Senior, Staff, Principal, Group, Lead, Director, II or above) | scored | Likely | 0.30 |
 | approvals below 50 and any PM-family title listed | scored | Likely | 0.20 |
 | some approvals but no PM-family title listed | scored | Unknown | 0.15 |
+| Total Approvals is zero or negative, is not a number, or the title list is non-empty but cannot be read | cannot evaluate: undefined_case (the table does not say what to do here, so the tool refuses to guess) | none | none |
 
 Rows with identical normalized name and identical figures are collapsed to one. Approval counts are company-wide, and their years and petition categories are undocumented. The title list holds top titles only, so a missing PM title is not evidence of a no. Reading the book's Unknown ("no evidence either way") for a company that has filings but no listed PM title is a v0.1 interpretation, because the book's definition does not cover that case. The prototype never writes an override, so the strongest recommendation stays Consider.
+
+How v0.1 reads titles (model-judgment). A title is PM-family if it contains "product manager" or "product management" in any case, or the whole word APM; Technical Program Manager and Project Manager do not count. Entry-level wording is: associate product manager, APM, Product Manager I (not II or higher), junior, new grad. Senior wording is: senior, sr, staff, principal, group, lead, director, head, VP, and Roman numerals II to X. A title with both kinds of wording counts as senior; across a company's titles, an entry-level title wins. Markers are matched as whole words anywhere in a PM title, so "Product Manager, Lead Generation" would be read as senior, and levels written as Arabic numerals or "Jr" are not read as markers, so those titles count as having no level. Both are known limitations, documented and tested, not fixed. Duplicate rows collapse only when approvals, denials, approval rate and the title list are all identical.
 
 ## Timeline gate v0.1
 deadline = OPT start + unemployment days. days available = deadline minus as-of date. days needed = hiring-lag weeks times 7. factor = the smaller of 1 and (days available divided by days needed). Stop with an error if days available is zero or negative, if any date does not parse, or if hiring-lag weeks or unemployment days is not a positive number. The factor is labeled your-input because every input to it is. The scorer downgrades Apply to Consider below 0.6 and forces Skip at or below 0.05.
@@ -85,7 +88,7 @@ Known weakness, recorded before building: one linear number cannot represent hir
 ## What it can and cannot verify
 Can verify (record, or deterministic arithmetic on your-input): that a company row exists; the approval and denial figures and the title strings as stored; the date arithmetic; a liveness result as recorded by the command at a given time.
 
-Cannot verify: that a company will sponsor this role, at this level, now; which fiscal years or petition types the counts cover; entry-level status beyond wording in a title string; hiring calendars or application windows; the H-1B lottery, recent rule changes, cap-exempt status, wage levels; E-Verify participation; STEM eligibility of any degree; anything legal. The person's school international office is the authority on dates and eligibility.
+Cannot verify: that a company will sponsor this role, at this level, now; which fiscal years or petition types the counts cover; entry-level status beyond wording in a title string; that a name match is the right company (a brand and its legal entity can differ, and two unrelated companies can share a normalized name); hiring calendars or application windows; the H-1B lottery, recent rule changes, cap-exempt status, wage levels; E-Verify participation; STEM eligibility of any degree; anything legal. The person's school international office is the authority on dates and eligibility.
 
 ## Output contract
 Files are written into the output folder the person chooses, never over a tracked file. A real run must use a folder that git ignores, such as private/pm-run/.
@@ -119,5 +122,8 @@ For logs/runs/2026fa-shinde-pras-<n>.md:
 - **Open issues:** what did not work or what is still missing
 ```
 
+## Status note
+Status as of 2026-10-02: DRAFT, with two open items (A5 and A6). Reached: the prototype runs on the shipped sample CSV with a fictional persona; its 50 offline tests pass on Python 3.9 and 3.11; the persona run reproduced identically in a fresh clone of the pushed branch; conformance passes. Why it stays DRAFT: SNICKERDOODLE.md moves a recipe to the next stage only when no open items remain, and A5 and A6 are proposals that the assignment asks to keep as typed to-dos. Not done: no live data was used (the tool reads the shipped CSV only), the tool itself runs no liveness check, and no named human has signed an attestation, so attestation stays null.
+
 ## Provenance
-Builds on recipes/cases/2026su/case-opt-timeline-fit-company-targeting.md, a DRAFT skeleton in this repo. Reused: its purpose wording, its stop conditions, and its list of things it cannot verify. Changed: its placeholder inputs, gate tests and CLI commands are replaced with paths and commands that exist. The tool, thresholds and rule above are new. Drafted with Claude in a planning chat, with repo checks run by Claude Code; the student's own contribution is recorded in FRICTIONAL.md and SOURCES.md.
+Builds on recipes/cases/2026su/case-opt-timeline-fit-company-targeting.md, a DRAFT skeleton in this repo. Reused: its purpose wording, its stop conditions, and its list of things it cannot verify. Changed: its placeholder inputs, gate tests and CLI commands are replaced with paths and commands that exist. The tool, thresholds and rule above are new. Drafted with Claude in a planning chat, with repo checks run by Claude Code; the student's own contribution is recorded in FRICTIONAL.md and SOURCES.md. The prototype, its tests and the evidence logs were produced with Claude Code and reviewed by the student; see SOURCES.md.
