@@ -37,4 +37,4 @@ roles.json, profile.json, role-scores.json and role-scores.md, run-log.json (for
 - A tier the scorer does not treat as soft (Proven, Avoid, or any unfamiliar value): could let a role reach Apply, so only Likely and Unknown are ever written.
 - The timeline factor is one linear number shared by all roles; fixed hiring cohorts will make it wrong for some roles (predicted, not yet observed).
 - Approvals of zero, a non-numeric approvals value, or an unreadable title list: cannot evaluate (undefined_case), never guessed.
-- A name that matches the wrong company, or a company listed under a different legal name: exact matching cannot tell either; a person must check the matched name in the report.
+- A name that matches the wrong company, or a company listed under a different legal name: exact matching cannot tell either. A person must check the matched CSV name: the report shows it only for scored roles; for held and cannot-evaluate roles it is in run-log.json (csv.matched_rows).

@@ -9,7 +9,7 @@ This report records how the prototype was tested: what was run, what was seen, a
 - Commit at the time of writing: c879f38.
 
 ## Toolchain baseline, before and after
-The fresh clone was checked before running the prototype and again after. Full output is in evidence-sanitized/clean-checkout/ (file names from step 1d).
+The fresh clone was checked before running the prototype and again after. Full output is in evidence-sanitized/clean-checkout/ (doctor: B3a and B6a; verify as is: B3b and B6b; verify with PyYAML: B3c and B6c).
 - npm run doctor: exit code 0 before and after; SUMMARY lines "environment: ✓ runnable", "recipes: 33/33 carry lifecycle frontmatter — all tracked", "next: continue"; the before and after output is identical (diff of B3a-doctor.log and B6a-doctor-after.log is empty).
 ```
 RECIPES (33)
